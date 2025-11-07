@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink, FileText } from "lucide-react"
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel"
+import { getAssetPath } from "@/lib/utils"
 
 const projects = [
   {
@@ -156,7 +157,7 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
                     <CarouselItem key={imgIndex} className="h-full">
                       <div className="h-full w-full">
                         <img
-                          src={image}
+                          src={getAssetPath(image)}
                           alt={`${project.title} - Image ${imgIndex + 1}`}
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />

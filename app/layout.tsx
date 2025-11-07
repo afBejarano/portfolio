@@ -10,7 +10,9 @@ export const metadata: Metadata = {
   description: "Portfolio showcasing graphics engineering work, shaders, and visual computing projects",
   generator: "v0.app",
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
