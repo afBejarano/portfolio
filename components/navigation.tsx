@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, Menu, X } from "lucide-react"
+import { Github, Linkedin, Mail, Menu, X, Terminal } from "lucide-react"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -32,10 +32,12 @@ export function Navigation() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <a href="#" className="nerd-font font-mono text-lg font-bold text-accent">
-            {String.fromCharCode(0xe795)} {/* nf-dev-terminal */}
-            {" GE "}
-            {String.fromCharCode(0xe795)} {/* nf-dev-terminal */}
+          <a href="#" className="flex items-center gap-2 font-mono text-lg font-bold transition-colors hover:opacity-80">
+            <span className="text-[#00E6B8]">{"<"}</span>
+            <span className="bg-gradient-to-r from-[#00E6B8] to-[#7B68EE] bg-clip-text text-transparent">
+              GE
+            </span>
+            <span className="text-[#00E6B8]">{">"}</span>
           </a>
 
           {/* Desktop Navigation */}
