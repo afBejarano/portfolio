@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+// Use basePath only for production builds (GitHub Pages)
+// For local development, set NEXT_PUBLIC_BASE_PATH='' or leave unset
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === 'production' ? '/portfolio' : '')
+
 const nextConfig = {
   output: 'export',
   typescript: {
@@ -11,7 +15,7 @@ const nextConfig = {
     unoptimized: true,
   },
   // GitHub Pages configuration for project page
-  basePath: '/portfolio',
+  basePath: basePath,
   trailingSlash: true,
 }
 

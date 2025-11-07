@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Mail, Linkedin } from "lucide-react"
+import { Mail, Linkedin, Github } from "lucide-react"
 
 export function Contact() {
   return (
@@ -27,9 +27,15 @@ export function Contact() {
               LinkedIn
             </a>
           </Button>
+          <Button size="lg" variant="outline" className="border-accent/30 hover:border-accent bg-transparent" asChild>
+            <a href="https://github.com/afBejarano" target="_blank" rel="noopener noreferrer">
+              <Github className="mr-2 h-5 w-5" />
+              GitHub
+            </a>
+          </Button>
         </div>
         <p className="font-mono text-sm text-muted-foreground">
-          Bogotá, Colombia · (+57) 317 371 9024 · (+1) 647 771 0262
+          Bogotá, Colombia · (+57) 317 371 9024
         </p>
       </div>
       <footer className="mt-24 border-t border-border pt-8 text-center">

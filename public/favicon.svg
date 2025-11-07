@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00E6B8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7B68EE;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="#0F111A"/>
+  <!-- Main geometric shape - represents graphics/rendering (simplified for small sizes) -->
+  <path d="M 32 16 L 48 24 L 48 40 L 32 48 L 16 40 L 16 24 Z" fill="url(#grad1)"/>
+  <!-- Inner accent for depth -->
+  <path d="M 32 24 L 42 28 L 42 36 L 32 40 L 22 36 L 22 28 Z" fill="#00E6B8" opacity="0.5"/>
+  <!-- Center highlight -->
+  <circle cx="32" cy="32" r="4" fill="#7B68EE" opacity="0.8"/>
+</svg>
+

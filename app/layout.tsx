@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: "Graphics Engineer Portfolio",
   description: "Portfolio showcasing graphics engineering work, shaders, and visual computing projects",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 }
 
 export default function RootLayout({

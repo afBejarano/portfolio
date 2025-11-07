@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Sparkles, Palette, Code } from "lucide-react"
 
 const shaders = [
   {
@@ -11,54 +12,72 @@ const shaders = [
     title: "Original",
     description: "Clean output without post-processing effects.",
     technique: "Base Pass",
+    details: "The base rendering pass without any post-processing effects applied. This serves as the reference output for comparing shader effects.",
+    useCases: ["Reference", "Performance Baseline", "Clean Output"],
   },
   {
     id: "crt-dynamic",
     title: "CRT Dynamic",
     description: "Retro CRT monitor effect with scanlines, color separation, and dynamic distortion.",
     technique: "Scanline + Color Separation + Distortion",
+    details: "Simulates classic CRT monitors using alternating scanlines, RGB channel separation, and time-based distortion. Perfect for retro gaming aesthetics and nostalgic visual styles.",
+    useCases: ["Retro Games", "Vintage Aesthetics", "Nostalgic UI"],
   },
   {
     id: "grayscale",
     title: "Grayscale",
     description: "Monochrome conversion using luminance weighting for natural grayscale.",
     technique: "Luminance Conversion",
+    details: "Converts color images to grayscale using the standard luminance formula (0.299*R + 0.587*G + 0.114*B) which matches human eye sensitivity to different color channels.",
+    useCases: ["Artistic Effects", "Focus Enhancement", "Memory Optimization"],
   },
   {
     id: "chromab",
     title: "Chromatic Aberration",
     description: "RGB channel separation simulating lens distortion for cinematic look.",
     technique: "Channel Offset + Radial Distortion",
+    details: "Mimics camera lens chromatic aberration by offsetting red and blue channels radially from the center. Creates a cinematic, dream-like quality often used in film and high-end games.",
+    useCases: ["Cinematic Effects", "Dream Sequences", "Visual Impact"],
   },
   {
     id: "dream",
     title: "Dream",
     description: "Surreal warping effect with color pulsing and rainbow tinting for ethereal visuals.",
     technique: "UV Warping + Color Pulse + Rainbow Tint",
+    details: "Combines UV coordinate warping with time-based color pulsing and rainbow tinting to create ethereal, dream-like visuals. The effect uses sine waves for smooth, organic motion.",
+    useCases: ["Fantasy Games", "Dream Sequences", "Surreal Art"],
   },
   {
     id: "glitch",
     title: "Glitch",
     description: "Digital corruption with RGB displacement, block displacement, and scanline artifacts.",
     technique: "RGB Split + Block Displacement + Scanlines",
+    details: "Simulates digital corruption through RGB channel splitting, random block displacement, and scanline artifacts. The effect uses sine waves for consistent per-scanline RGB offsets and random color inversions for added chaos.",
+    useCases: ["Cyberpunk", "Error States", "Transitions"],
   },
   {
     id: "posterization",
     title: "Posterization",
     description: "Color quantization effect reducing color palette to 5 distinct levels.",
     technique: "Color Quantization",
+    details: "Reduces the color palette by quantizing RGB values into discrete levels. This creates a stylized, poster-like appearance with distinct color bands, similar to vintage printing techniques.",
+    useCases: ["Artistic Styling", "Performance Optimization", "Visual Distinction"],
   },
   {
     id: "pixelation",
     title: "Pixelation",
     description: "Low-resolution pixelation effect for retro gaming aesthetic.",
     technique: "Pixel Sampling",
+    details: "Downsamples the image by averaging pixel values within blocks, then upscales to create a pixelated effect. The pixel size is device-pixel-ratio aware for consistent appearance across displays.",
+    useCases: ["Retro Games", "8-bit Aesthetics", "Performance Mode"],
   },
   {
     id: "fog",
     title: "Noise/Fog",
     description: "Procedural noise overlay with temporal variation for atmospheric effects.",
     technique: "Multi-Layer Noise + Temporal Variation",
+    details: "Applies procedural noise to each pixel with random variation, creating an atmospheric fog or film grain effect. The noise is regenerated each frame for temporal variation.",
+    useCases: ["Atmospheric Effects", "Film Grain", "Mood Enhancement"],
   },
 ]
 
@@ -77,7 +96,7 @@ function ShaderCanvas({ activeShader }: { activeShader: string }) {
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect()
       if (rect.width === 0 || rect.height === 0) return
-      const dpr = window.devicePixelRatio || 1
+    const dpr = window.devicePixelRatio || 1
       const newWidth = rect.width * dpr
       const newHeight = rect.height * dpr
       
@@ -86,7 +105,7 @@ function ShaderCanvas({ activeShader }: { activeShader: string }) {
         canvas.height = newHeight
         // Reset transformation matrix
         ctx.setTransform(1, 0, 0, 1, 0, 0)
-        ctx.scale(dpr, dpr)
+    ctx.scale(dpr, dpr)
       }
     }
 
@@ -104,13 +123,15 @@ function ShaderCanvas({ activeShader }: { activeShader: string }) {
       const tempCtx = tempCanvas.getContext("2d")
       if (!tempCtx) return null
 
-      tempCtx.fillStyle = "#1a1a2e"
+      tempCtx.fillStyle = "#0F111A"
       tempCtx.fillRect(0, 0, 512, 512)
 
-      tempCtx.fillStyle = "#ff0077"
+      // Mint accent
+      tempCtx.fillStyle = "#00E6B8"
       tempCtx.fillRect(50, 50, 150, 150)
 
-      tempCtx.fillStyle = "#00ffff"
+      // Lavender accent
+      tempCtx.fillStyle = "#7B68EE"
       tempCtx.beginPath()
       tempCtx.moveTo(256, 50)
       tempCtx.lineTo(406, 200)
@@ -118,15 +139,18 @@ function ShaderCanvas({ activeShader }: { activeShader: string }) {
       tempCtx.closePath()
       tempCtx.fill()
 
-      tempCtx.fillStyle = "#00ff88"
+      // Mint circle
+      tempCtx.fillStyle = "#00E6B8"
       tempCtx.beginPath()
       tempCtx.arc(128, 350, 80, 0, Math.PI * 2)
       tempCtx.fill()
 
-      tempCtx.fillStyle = "#8b5cf6"
+      // Lavender rectangle
+      tempCtx.fillStyle = "#7B68EE"
       tempCtx.fillRect(300, 300, 150, 100)
 
-      tempCtx.strokeStyle = "#ffffff"
+      // Light slate gray lines
+      tempCtx.strokeStyle = "#D0D4EA"
       tempCtx.lineWidth = 8
       tempCtx.beginPath()
       tempCtx.moveTo(0, 256)
@@ -336,10 +360,10 @@ function ShaderCanvas({ activeShader }: { activeShader: string }) {
 
       // Reset transform before putImageData (uses physical pixels)
       ctx.setTransform(1, 0, 0, 1, 0, 0)
-      if (activeShader !== "pixelation") {
-        ctx.putImageData(imageData, 0, 0)
+      if (activeShader === "pixelation") {
+        // Pixelation already handled above with its own putImageData
       } else {
-        ctx.putImageData(pixelatedData, 0, 0)
+        ctx.putImageData(imageData, 0, 0)
       }
       // Restore scale for next frame
       ctx.scale(dpr, dpr)
@@ -372,32 +396,6 @@ function ShaderCanvas({ activeShader }: { activeShader: string }) {
 
 export function ShaderShowcase() {
   const [activeShader, setActiveShader] = useState("original")
-  const [fps, setFps] = useState(0)
-  const [frameTime, setFrameTime] = useState(0)
-  const [memoryUsage, setMemoryUsage] = useState(0)
-  const performanceRef = useRef({ frameCount: 0, lastTime: performance.now() })
-
-  useEffect(() => {
-    const updatePerformance = () => {
-      const now = performance.now()
-      const delta = now - performanceRef.current.lastTime
-      performanceRef.current.frameCount++
-      performanceRef.current.lastTime = now
-
-      const currentFps = Math.round(1000 / delta)
-      setFps(currentFps)
-      setFrameTime(delta)
-
-      if (performance.memory) {
-        const usedMB = Math.round(performance.memory.usedJSHeapSize / 1024 / 1024)
-        setMemoryUsage(usedMB)
-      }
-
-      requestAnimationFrame(updatePerformance)
-    }
-    const id = requestAnimationFrame(updatePerformance)
-    return () => cancelAnimationFrame(id)
-  }, [])
 
   const currentShader = shaders.find((s) => s.id === activeShader) || shaders[0]
 
@@ -409,108 +407,132 @@ export function ShaderShowcase() {
         </h2>
         <div className="mb-12 h-1 w-24 bg-accent"></div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Main shader display */}
-          <div className="space-y-4">
-            <div className="overflow-hidden rounded-lg border border-border bg-card shadow-lg transition-all hover:border-accent hover:shadow-accent/20">
-              <div className="aspect-video overflow-hidden bg-[#0a0a0a] relative">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {/* Canvas Display - Left Column */}
+          <div className="lg:col-span-1">
+            <Card className="group relative overflow-hidden border-2 border-[#00E6B8]/30 bg-gradient-to-br from-card/80 via-card/60 to-card/80 backdrop-blur-sm transition-all duration-500 hover:border-[#00E6B8]/50 hover:shadow-xl hover:shadow-[#00E6B8]/20">
+              {/* Shine effect on hover */}
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full pointer-events-none"></div>
+              
+              <div className="relative aspect-square overflow-hidden bg-[#0F111A]">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#00E6B8]/5 via-transparent to-[#7B68EE]/5 pointer-events-none"></div>
                 <ShaderCanvas activeShader={activeShader} />
               </div>
-              <div className="border-t border-border bg-card/50 p-6">
-                <h3 className="mb-2 text-xl font-bold text-card-foreground">{currentShader.title}</h3>
-                <p className="mb-4 text-pretty text-sm leading-relaxed text-muted-foreground">
+              
+              <CardContent className="p-6 border-t border-[#00E6B8]/20">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="rounded-full bg-[#00E6B8]/20 p-2">
+                    <Palette className="h-5 w-5 text-[#00E6B8]" />
+                  </div>
+                  <h3 className="text-xl font-bold bg-gradient-to-r from-[#00E6B8] to-[#7B68EE] bg-clip-text text-transparent">
+                    {currentShader.title}
+                  </h3>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
                   {currentShader.description}
                 </p>
-                <Badge variant="secondary" className="border border-accent/30 font-mono text-xs">
-                  {currentShader.technique}
-                </Badge>
-              </div>
-            </div>
-
-            {/* Shader selection buttons */}
-            <div className="grid grid-cols-3 gap-2">
-              {shaders.map((shader) => (
-                <Button
-                  key={shader.id}
-                  onClick={() => setActiveShader(shader.id)}
-                  variant={activeShader === shader.id ? "default" : "outline"}
-                  size="sm"
-                  className={
-                    activeShader === shader.id
-                      ? "border-accent bg-accent text-accent-foreground hover:bg-accent/90"
-                      : "border-border hover:border-accent hover:bg-accent/10 text-xs"
-                  }
-                >
-                  {shader.title}
-                </Button>
-              ))}
-            </div>
+              </CardContent>
+            </Card>
           </div>
 
-          {/* Performance Metrics */}
-          <Card className="border-border bg-card/50">
-            <CardContent className="p-6">
-              <h3 className="mb-4 text-lg font-bold text-card-foreground">Performance Analytics</h3>
-              <div className="space-y-4">
-                <div>
-                  <div className="mb-2 flex justify-between text-sm">
-                    <span>Frame Rate</span>
-                    <span className={fps >= 50 ? "text-green-500" : fps >= 30 ? "text-yellow-500" : "text-red-500"}>
-                      {fps} FPS
-                    </span>
+          {/* Shader Selection - Middle Column */}
+          <div className="lg:col-span-1">
+            <Card className="border-[#7B68EE]/30 bg-gradient-to-br from-card/80 via-card/60 to-card/80 backdrop-blur-sm h-full">
+              <CardContent className="p-6">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="rounded-full bg-[#7B68EE]/20 p-2">
+                    <Sparkles className="h-5 w-5 text-[#7B68EE]" />
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-muted">
-                    <div
-                      className={`h-full rounded-full transition-all ${
-                        fps >= 50 ? "bg-green-500" : fps >= 30 ? "bg-yellow-500" : "bg-red-500"
-                      }`}
-                      style={{ width: `${Math.min((fps / 60) * 100, 100)}%` }}
-                    />
-                  </div>
+                  <h3 className="text-xl font-bold bg-gradient-to-r from-[#7B68EE] to-[#00E6B8] bg-clip-text text-transparent">
+                    Shader Library
+                  </h3>
                 </div>
-                <div>
-                  <div className="mb-2 flex justify-between text-sm">
-                    <span>Frame Time</span>
-                    <span className={frameTime <= 16.67 ? "text-green-500" : frameTime <= 33.33 ? "text-yellow-500" : "text-red-500"}>
-                      {frameTime.toFixed(1)} ms
-                    </span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-muted">
-                    <div
-                      className={`h-full rounded-full transition-all ${
-                        frameTime <= 16.67 ? "bg-green-500" : frameTime <= 33.33 ? "bg-yellow-500" : "bg-red-500"
-                      }`}
-                      style={{ width: `${Math.min((frameTime / 16.67) * 100, 100)}%` }}
-                    />
-                  </div>
-                </div>
-                {memoryUsage > 0 && (
-                  <div>
-                    <div className="mb-2 flex justify-between text-sm">
-                      <span>Memory Usage</span>
-                      <span className={memoryUsage < 100 ? "text-green-500" : memoryUsage < 200 ? "text-yellow-500" : "text-red-500"}>
-                        {memoryUsage} MB
-                      </span>
-                    </div>
-                    <div className="h-2 overflow-hidden rounded-full bg-muted">
-                      <div
-                        className={`h-full rounded-full transition-all ${
-                          memoryUsage < 100 ? "bg-green-500" : memoryUsage < 200 ? "bg-yellow-500" : "bg-red-500"
+                <div className="grid grid-cols-2 gap-2">
+                  {shaders.map((shader) => {
+                    const isActive = activeShader === shader.id
+                    return (
+                      <button
+                        key={shader.id}
+                        onClick={() => setActiveShader(shader.id)}
+                        className={`relative group/btn overflow-hidden rounded-lg border-2 p-3 text-left text-xs font-semibold transition-all duration-300 ${
+                          isActive
+                            ? "border-[#00E6B8] bg-gradient-to-br from-[#00E6B8]/20 to-[#7B68EE]/20 text-[#00E6B8] shadow-lg shadow-[#00E6B8]/20"
+                            : "border-[#5A6482]/30 bg-card/50 text-muted-foreground hover:border-[#00E6B8]/50 hover:bg-[#00E6B8]/10 hover:text-[#00E6B8]"
                         }`}
-                        style={{ width: `${Math.min((memoryUsage / 300) * 100, 100)}%` }}
-                      />
+                      >
+                        {/* Shine effect on active */}
+                        {isActive && (
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
+                        )}
+                        <div className="relative z-10 flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-current opacity-50"></span>
+                          <span>{shader.title}</span>
+                        </div>
+                      </button>
+                    )
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Technique Details - Right Column */}
+          <div className="lg:col-span-1">
+            <Card className="border-[#00E6B8]/30 bg-gradient-to-br from-card/80 via-card/60 to-card/80 backdrop-blur-sm h-full">
+              <CardContent className="p-6">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="rounded-full bg-[#00E6B8]/20 p-2">
+                    <Code className="h-5 w-5 text-[#00E6B8]" />
+                  </div>
+                  <h3 className="text-xl font-bold bg-gradient-to-r from-[#00E6B8] to-[#7B68EE] bg-clip-text text-transparent">
+                    Technique Details
+                  </h3>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-[#00E6B8]"></span>
+                      Technique
+                    </h4>
+                    <div className="rounded-lg border border-[#00E6B8]/30 bg-[#00E6B8]/10 p-3">
+                      <Badge variant="secondary" className="border border-[#00E6B8]/30 bg-[#00E6B8]/10 text-[#00E6B8] font-mono text-xs">
+                        {currentShader.technique}
+                      </Badge>
                     </div>
                   </div>
-                )}
-                <div>
-                  <div className="mb-2 flex justify-between text-sm">
-                    <span>Active Shader</span>
-                    <span className="font-mono text-accent">{currentShader.title}</span>
+                  
+                  <div className="pt-4 border-t border-[#5A6482]/20">
+                    <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-[#00E6B8]"></span>
+                      Implementation
+                    </h4>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {currentShader.details}
+                    </p>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-[#5A6482]/20">
+                    <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-[#7B68EE]"></span>
+                      Use Cases
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {currentShader.useCases.map((useCase, index) => (
+                        <Badge
+                          key={index}
+                          variant="secondary"
+                          className="border border-[#00E6B8]/30 bg-[#00E6B8]/10 text-[#00E6B8] font-mono text-xs"
+                        >
+                          {useCase}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

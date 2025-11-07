@@ -32,8 +32,10 @@ export function Navigation() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <a href="#" className="font-mono text-lg font-bold text-accent">
-            {"<GE />"}
+          <a href="#" className="nerd-font font-mono text-lg font-bold text-accent">
+            {String.fromCharCode(0xe795)} {/* nf-dev-terminal */}
+            {" GE "}
+            {String.fromCharCode(0xe795)} {/* nf-dev-terminal */}
           </a>
 
           {/* Desktop Navigation */}

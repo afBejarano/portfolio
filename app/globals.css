@@ -3,75 +3,91 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Quantum Bloom - Mint-Infused Color Palette */
 :root {
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.15 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 0);
-  --primary: oklch(0.2 0 0);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0.2 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.55 0 0);
-  --accent: oklch(0.75 0.15 165);
-  --accent-foreground: oklch(0.15 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.92 0 0);
-  --input: oklch(0.92 0 0);
-  --ring: oklch(0.75 0.15 165);
+  /* Primary Dark - Background */
+  --quantum-bg: #0F111A;
+  /* Mint Accent */
+  --quantum-mint: #00E6B8;
+  /* Secondary Accent - Lavender */
+  --quantum-lavender: #7B68EE;
+  /* Neutral Light */
+  --quantum-light: #D0D4EA;
+  /* Medium Grey */
+  --quantum-grey-medium: #5A6482;
+  /* Darker Grey */
+  --quantum-grey-dark: #343A4F;
+}
+
+:root {
+  --background: #0F111A;
+  --foreground: #D0D4EA;
+  --card: #1A1D2A;
+  --card-foreground: #D0D4EA;
+  --popover: #1A1D2A;
+  --popover-foreground: #D0D4EA;
+  --primary: #D0D4EA;
+  --primary-foreground: #0F111A;
+  --secondary: #343A4F;
+  --secondary-foreground: #D0D4EA;
+  --muted: #343A4F;
+  --muted-foreground: #5A6482;
+  --accent: #00E6B8;
+  --accent-foreground: #0F111A;
+  --destructive: #FF6B6B;
+  --destructive-foreground: #0F111A;
+  --border: #343A4F;
+  --input: #343A4F;
+  --ring: #00E6B8;
   --radius: 0.5rem;
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --chart-1: #00E6B8;
+  --chart-2: #7B68EE;
+  --chart-3: #00E6B8;
+  --chart-4: #7B68EE;
+  --chart-5: #00E6B8;
+  --sidebar: #1A1D2A;
+  --sidebar-foreground: #D0D4EA;
+  --sidebar-primary: #00E6B8;
+  --sidebar-primary-foreground: #0F111A;
+  --sidebar-accent: #343A4F;
+  --sidebar-accent-foreground: #D0D4EA;
+  --sidebar-border: #343A4F;
+  --sidebar-ring: #00E6B8;
 }
 
 .dark {
-  --background: oklch(0.08 0.01 240);
-  --foreground: oklch(0.92 0.01 180);
-  --card: oklch(0.11 0.01 240);
-  --card-foreground: oklch(0.92 0.01 180);
-  --popover: oklch(0.11 0.01 240);
-  --popover-foreground: oklch(0.92 0.01 180);
-  --primary: oklch(0.92 0.01 180);
-  --primary-foreground: oklch(0.08 0.01 240);
-  --secondary: oklch(0.15 0.01 240);
-  --secondary-foreground: oklch(0.92 0.01 180);
-  --muted: oklch(0.18 0.01 240);
-  --muted-foreground: oklch(0.55 0.01 180);
-  --accent: oklch(0.75 0.18 175);
-  --accent-foreground: oklch(0.08 0.01 240);
-  --destructive: oklch(0.5 0.2 25);
-  --destructive-foreground: oklch(0.92 0.01 180);
-  --border: oklch(0.18 0.01 240);
-  --input: oklch(0.18 0.01 240);
-  --ring: oklch(0.75 0.18 175);
-  --chart-1: oklch(0.75 0.18 175);
-  --chart-2: oklch(0.65 0.2 300);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --background: #0F111A;
+  --foreground: #D0D4EA;
+  --card: #1A1D2A;
+  --card-foreground: #D0D4EA;
+  --popover: #1A1D2A;
+  --popover-foreground: #D0D4EA;
+  --primary: #D0D4EA;
+  --primary-foreground: #0F111A;
+  --secondary: #343A4F;
+  --secondary-foreground: #D0D4EA;
+  --muted: #343A4F;
+  --muted-foreground: #5A6482;
+  --accent: #00E6B8;
+  --accent-foreground: #0F111A;
+  --destructive: #FF6B6B;
+  --destructive-foreground: #0F111A;
+  --border: #343A4F;
+  --input: #343A4F;
+  --ring: #00E6B8;
+  --chart-1: #00E6B8;
+  --chart-2: #7B68EE;
+  --chart-3: #00E6B8;
+  --chart-4: #7B68EE;
+  --chart-5: #00E6B8;
+  --sidebar: #1A1D2A;
+  --sidebar-foreground: #D0D4EA;
+  --sidebar-primary: #00E6B8;
+  --sidebar-primary-foreground: #0F111A;
+  --sidebar-accent: #343A4F;
+  --sidebar-accent-foreground: #D0D4EA;
+  --sidebar-border: #343A4F;
+  --sidebar-ring: #00E6B8;
 }
 
 @theme inline {
@@ -116,6 +132,27 @@
 }
 
 @layer base {
+  /* Hermit Nerd Font - Using CDN */
+  @font-face {
+    font-family: 'Hermit Nerd Font';
+    src: url('https://github.com/ryanoasis/nerd-fonts/raw/v3.3.0/patched-fonts/Hermit/Regular/complete/Hermit%20Regular%20Nerd%20Font%20Complete.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Hermit Nerd Font';
+    src: url('https://github.com/ryanoasis/nerd-fonts/raw/v3.3.0/patched-fonts/Hermit/Bold/complete/Hermit%20Bold%20Nerd%20Font%20Complete.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  .nerd-font {
+    font-family: 'Hermit Nerd Font', 'MesloLGS NF', 'FiraCode Nerd Font', 'Hack Nerd Font', 'JetBrainsMono Nerd Font', monospace;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
@@ -135,6 +172,19 @@
     50% {
       transform: translateY(-20px);
     }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
   }
 
   .particle-bg {
