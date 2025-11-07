@@ -9,7 +9,7 @@ const skillCategories = [
     title: "Graphics APIs",
     icon: Layers,
     color: "mint",
-    skills: ["Vulkan", "OpenGL", "DirectX", "WebGL"],
+    skills: ["Vulkan", "OpenGL", "WebGL"],
   },
   {
     title: "Shading Languages",
